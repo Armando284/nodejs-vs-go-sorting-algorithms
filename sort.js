@@ -4,7 +4,7 @@ const { performance } = require('perf_hooks')
 
 async function loadArrayData() {
 	try {
-		const data = await fs.readFile('./randomNumbersArray.json', { encoding: 'utf8' })
+		const data = await fs.readFile('./inputs/randomNumbersArray.json', { encoding: 'utf8' })
 		return JSON.parse(data)
 	} catch (err) {
 		console.error('Reading file error:', err)
@@ -54,18 +54,28 @@ function mergeSort(array) {
 	return merge(mergeSort(left), mergeSort(array))
 }
 
+function saveResult(method, array) {
+	const filePath = `./outputs/node${method}.json`
+	fs.writeFile(filePath, JSON.stringify(array, null, 4), err => {
+		if (err) console.error('Writing file error: ', err)
+	}).then(() => console.log(`Sorted array by method = ${method} saved here ${filePath} !`))
+}
+
 function main() {
 	loadArrayData().then(data => {
 		const array = data
 		const array2 = [...array]
 		// BUBBLE SORT
 		console.time('bubbleSort')
-		console.log('Bubble Sort', bubbleSort(array))
+		const bubbleResult = bubbleSort(array)
 		console.timeEnd('bubbleSort')
 		// MERGE SORT
 		console.time('mergeSort')
-		console.log('Merge Sort', mergeSort(array2))
+		const mergeResult = mergeSort(array2)
 		console.timeEnd('mergeSort')
+		// Save sorted arrays
+		saveResult('BubbleSort', bubbleResult)
+		saveResult('MergeSort', mergeResult)
 	})
 }
 

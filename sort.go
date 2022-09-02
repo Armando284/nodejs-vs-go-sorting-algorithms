@@ -52,8 +52,19 @@ func mergeSort(array []int) []int {
 	return merge(left, right)
 }
 
+func saveResults(method string, array []int) {
+	var filePath string = "./outputs/go" + method + ".json"
+	file, _ := json.MarshalIndent(array, "", " ") //this parse the array into a writable object
+	err := ioutil.WriteFile(filePath, file, 0644)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("Sorted array by method = %s saved here %s !", method, filePath)
+	fmt.Println()
+}
+
 func main() {
-	data, err := ioutil.ReadFile("./randomNumbersArray.json")
+	data, err := ioutil.ReadFile("./inputs/randomNumbersArray.json")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -64,10 +75,15 @@ func main() {
 	json.Unmarshal(data, &numbers2)
 	// BUBBLE SORT
 	bubbleStart := time.Now()
-	fmt.Println(BubbleSort(numbers))
+	bubbleResult := BubbleSort(numbers)
 	fmt.Printf("Bubble sort %s", time.Since(bubbleStart))
+	fmt.Println()
 	// MERGE SORT
 	mergeStart := time.Now()
-	fmt.Println(mergeSort(numbers2))
+	mergeResult := mergeSort(numbers2)
 	fmt.Printf("Merge Sort %s", time.Since(mergeStart))
+	fmt.Println()
+	// Save sort results
+	saveResults("BubbleSort", bubbleResult)
+	saveResults("MergeSort", mergeResult)
 }
