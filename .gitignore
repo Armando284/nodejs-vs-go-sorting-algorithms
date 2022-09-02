@@ -1,2 +1,2 @@
-inputs/*
-outputs/*
+inputs/*.json
+outputs/*.json
