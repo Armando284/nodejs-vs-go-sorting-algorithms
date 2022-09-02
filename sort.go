@@ -74,14 +74,16 @@ func main() {
 	json.Unmarshal(data, &numbers)
 	json.Unmarshal(data, &numbers2)
 	// BUBBLE SORT
+	fmt.Println("Bubble Sort Started!")
 	bubbleStart := time.Now()
 	bubbleResult := BubbleSort(numbers)
-	fmt.Printf("Bubble sort %s", time.Since(bubbleStart))
+	fmt.Printf("BubbleSort: %s", time.Since(bubbleStart))
 	fmt.Println()
 	// MERGE SORT
+	fmt.Println("Merge Sort Started!")
 	mergeStart := time.Now()
 	mergeResult := mergeSort(numbers2)
-	fmt.Printf("Merge Sort %s", time.Since(mergeStart))
+	fmt.Printf("MergeSort: %s", time.Since(mergeStart))
 	fmt.Println()
 	// Save sort results
 	saveResults("BubbleSort", bubbleResult)

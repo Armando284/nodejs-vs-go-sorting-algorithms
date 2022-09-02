@@ -66,13 +66,15 @@ function main() {
 		const array = data
 		const array2 = [...array]
 		// BUBBLE SORT
-		console.time('bubbleSort')
+		console.log('Bubble Sort Started!')
+		console.time('BubbleSort')
 		const bubbleResult = bubbleSort(array)
-		console.timeEnd('bubbleSort')
+		console.timeEnd('BubbleSort')
 		// MERGE SORT
-		console.time('mergeSort')
+		console.log('Merge Sort Started!')
+		console.time('MergeSort')
 		const mergeResult = mergeSort(array2)
-		console.timeEnd('mergeSort')
+		console.timeEnd('MergeSort')
 		// Save sorted arrays
 		saveResult('BubbleSort', bubbleResult)
 		saveResult('MergeSort', mergeResult)
