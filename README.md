@@ -4,14 +4,12 @@ A test of speed for sorting algorithms bubble sort and merge sort in Node js and
 
 ## Installations
 
-You need NodeJs and Golang installed on your computer to run the tests.
+You need NodeJs and Golang installed on your computer to run this tests.
 
 ## How to use
 
-1. Open "createExampleArray.js" and change the value of the "ARRAY_LENGTH" variable to your like
+1. Run `node createArray.js XXXX` where XXXX is the length of the array with random numbers you want to use on the sorting algorithms, this will create a json file on the `./inputs` folder with the created array.
 
-2. Run node createExampleArray.js
+2. Run `node sort.js` to see Node js performance. This will run Bubble Sort and Merge Sort on different arrays loaded from the previously created json file, display the times of each algorithm on the terminal and save the sorted array in the `./outputs` folder.
 
-3. Run node sort.js to see Node js performance
-
-4. Run go run sort.go to see Golang's performance
+3. Run `go run sort.go` to see Golang's performance. This will run Bubble Sort and Merge Sort on different arrays loaded from the previously created json file, display the times of each algorithm on the terminal and save the sorted array in the `./outputs` folder.
